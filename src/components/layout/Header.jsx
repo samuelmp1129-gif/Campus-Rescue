@@ -1,11 +1,13 @@
 import React from 'react';
-import { Sparkles, MapPin } from 'lucide-react';
+import { Plus, RotateCcw } from 'lucide-react';
 import StatsBar from './StatsBar';
 
 export default function Header({
   stats,
   activeStatusFilter,
   onQuickStatusFilter,
+  onOpenCreateModal,
+  onResetDemoData,
 }) {
   return (
     <header className="relative overflow-hidden bg-gradient-to-br from-[#184E77] via-[#1E6091] to-[#168AAD] text-white border-b-4 border-[#52B69A]">
@@ -33,13 +35,9 @@ export default function Header({
         <div className="bg-[#184E77]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-8 sm:pt-10 sm:pb-10">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D9ED92]/20 border border-[#B5E48C]/50 text-[#D9ED92] text-xs font-bold mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-[#D9ED92]" />
-              <span>Plataforma Estudiantil de Objetos Perdidos</span>
-            </div>
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
               Campus <span className="text-[#D9ED92]">Rescue</span>
             </h1>
@@ -49,11 +47,28 @@ export default function Header({
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-white bg-[#184E77]/80 border border-[#52B69A] px-3.5 py-2.5 rounded-xl self-start lg:self-auto shadow-sm">
-            <MapPin className="w-4 h-4 text-[#D9ED92] shrink-0" />
-            <span>
-              Cobertura activa: <strong className="text-[#B5E48C]">Biblioteca, Laboratorios, Cafetería y Auditorios</strong>
-            </span>
+          {/* Botones minimalistas en el lugar donde estaba Cobertura */}
+          <div className="flex items-center gap-3 self-start lg:self-auto">
+            {onResetDemoData && (
+              <button
+                type="button"
+                onClick={onResetDemoData}
+                title="Restaurar los 4 reportes de ejemplo iniciales"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-[#D9ED92]/80 hover:text-white hover:bg-white/10 transition-colors focus:outline-none"
+              >
+                <RotateCcw className="w-3.5 h-3.5 text-[#B5E48C]" />
+                <span>Restaurar Demo</span>
+              </button>
+            )}
+
+            <button
+              type="button"
+              onClick={onOpenCreateModal}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#52B69A] hover:bg-[#76C893] text-white hover:text-[#184E77] shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#D9ED92]/50 active:scale-[0.98]"
+            >
+              <Plus className="w-3.5 h-3.5 shrink-0" />
+              <span>Crear Reporte</span>
+            </button>
           </div>
         </div>
 

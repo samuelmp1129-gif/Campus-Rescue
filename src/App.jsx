@@ -1,5 +1,4 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import Navbar from './components/layout/Navbar';
 import Header from './components/layout/Header';
 import ReportFilters from './components/reports/ReportFilters';
 import ReportGrid from './components/reports/ReportGrid';
@@ -116,17 +115,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F2F9F5] text-[#184E77]">
-      {/* Barra de Navegación Superior */}
-      <Navbar
-        onOpenCreateModal={() => setIsCreateModalOpen(true)}
-        onResetDemoData={handleResetDemoData}
-      />
-
-      {/* Encabezado Principal y 3 Tarjetas de Resumen */}
+      {/* Encabezado Principal con botones minimalistas arriba a la derecha */}
       <Header
         stats={stats}
         activeStatusFilter={filters.status}
         onQuickStatusFilter={handleQuickStatusFilter}
+        onOpenCreateModal={() => setIsCreateModalOpen(true)}
+        onResetDemoData={handleResetDemoData}
       />
 
       {/* Contenido Principal */}
@@ -151,19 +146,6 @@ export default function App() {
           onOpenCreateModal={() => setIsCreateModalOpen(true)}
         />
       </main>
-
-      {/* Pie de Página */}
-      <footer className="bg-[#184E77] text-[#D9ED92] border-t-4 border-[#52B69A] mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-          <p>
-            <strong className="text-white">Campus Rescue</strong> — Objetos
-            Perdidos en el Campus · Persistencia local automática (localStorage)
-          </p>
-          <p className="text-[#B5E48C]">
-            Haz clic en cualquier tarjeta para consultar el contacto de entrega.
-          </p>
-        </div>
-      </footer>
 
       {/* Modal de Registro de Nuevo Reporte */}
       <CreateReportModal

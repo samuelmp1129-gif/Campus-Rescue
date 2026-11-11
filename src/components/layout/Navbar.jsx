@@ -1,59 +1,43 @@
 import React from 'react';
-import { Plus, RotateCcw, ShieldCheck } from 'lucide-react';
-import campusLogo from '../../assets/campusLogo.svg';
-import Button from '../ui/Button';
+import { Plus, RotateCcw } from 'lucide-react';
 
+/**
+ * Barra de control inferior sutil y minimalista (pie de página)
+ * con las acciones "Restaurar Demo" y "Crear Reporte".
+ */
 export default function Navbar({ onOpenCreateModal, onResetDemoData }) {
   return (
-    <nav className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b-2 border-[#99D98C]/60 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        {/* Identidad de Marca */}
-        <div className="flex items-center gap-3">
-          <img
-            src={campusLogo}
-            alt="Logo Campus Rescue"
-            className="w-10 h-10 rounded-xl shadow-sm shadow-[#184E77]/20"
-          />
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-lg font-extrabold tracking-tight text-[#184E77]">
-                Campus <span className="text-[#168AAD]">Rescue</span>
-              </span>
-              <span className="hidden md:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D9ED92] text-[#184E77] border border-[#99D98C]">
-                <ShieldCheck className="w-3 h-3 text-[#1A759F]" />
-                Comunidad Universitaria
-              </span>
-            </div>
-            <p className="text-xs text-[#1E6091] hidden sm:block font-medium">
-              Centro de Objetos Perdidos y Encontrados en el Campus
-            </p>
-          </div>
+    <footer className="mt-12 border-t border-[#99D98C]/50 bg-white/70 backdrop-blur-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="text-xs text-slate-500 text-center sm:text-left">
+          <span className="font-semibold text-[#184E77]">Campus Rescue</span> —
+          Objetos Perdidos en el Campus · Haz clic en cualquier tarjeta para ver el detalle.
         </div>
 
-        {/* Acciones rápidas */}
-        <div className="flex items-center gap-2.5">
+        {/* Acciones minimalistas en la parte inferior */}
+        <div className="flex items-center gap-3">
           {onResetDemoData && (
             <button
               type="button"
               onClick={onResetDemoData}
               title="Restaurar los 4 reportes de ejemplo iniciales"
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#184E77] hover:bg-[#D9ED92]/50 border border-[#99D98C]/70 transition-colors"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-500 hover:text-[#184E77] hover:bg-slate-100/80 transition-colors focus:outline-none"
             >
-              <RotateCcw className="w-3.5 h-3.5 text-[#168AAD]" />
-              <span className="hidden sm:inline">Restaurar Demo</span>
+              <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
+              <span>Restaurar Demo</span>
             </button>
           )}
 
-          <Button
-            variant="primary"
-            size="md"
-            icon={Plus}
+          <button
+            type="button"
             onClick={onOpenCreateModal}
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#1A759F] hover:bg-[#184E77] text-[#D9ED92] hover:text-white shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#34A0A4]/40 active:scale-[0.98]"
           >
-            <span>+ Crear Reporte</span>
-          </Button>
+            <Plus className="w-3.5 h-3.5 shrink-0" />
+            <span>Crear Reporte</span>
+          </button>
         </div>
       </div>
-    </nav>
+    </footer>
   );
 }

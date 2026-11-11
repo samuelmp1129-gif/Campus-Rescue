@@ -4,20 +4,17 @@ import {
   Tag,
   MapPin,
   Filter,
-  Plus,
   RotateCcw,
   X,
   CheckCircle2,
   Clock,
 } from 'lucide-react';
 import { CATEGORIES } from '../../utils/constants';
-import Button from '../ui/Button';
 
 export default function ReportFilters({
   filters,
   onFilterChange,
   onResetFilters,
-  onOpenCreateModal,
   locations = [],
   totalCount = 0,
   filteredCount = 0,
@@ -44,12 +41,12 @@ export default function ReportFilters({
   return (
     <section
       aria-label="Barra de búsqueda y filtros"
-      className="bg-white rounded-2xl shadow-md shadow-[#184E77]/5 border-2 border-[#99D98C]/70 p-4 sm:p-6 mb-8"
+      className="bg-white rounded-2xl shadow-md shadow-[#184E77]/5 border border-[#99D98C]/70 p-4 sm:p-6 mb-8"
     >
-      {/* Fila superior: Búsqueda + Dropdowns + Botón Crear Reporte */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3.5 items-end">
+      {/* Fila superior: Búsqueda + Dropdowns de Categoría y Ubicación */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 items-end">
         {/* Input de búsqueda libre */}
-        <div className="lg:col-span-5">
+        <div className="md:col-span-2 lg:col-span-6">
           <label
             htmlFor="filter-search"
             className="block text-xs font-bold uppercase tracking-wider text-[#184E77] mb-1.5"
@@ -80,7 +77,7 @@ export default function ReportFilters({
         </div>
 
         {/* Filtro Dropdown por Categoría */}
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-3">
           <label
             htmlFor="filter-category"
             className="block text-xs font-bold uppercase tracking-wider text-[#184E77] mb-1.5"
@@ -129,19 +126,6 @@ export default function ReportFilters({
               ))}
             </select>
           </div>
-        </div>
-
-        {/* Botón destacado + Crear Reporte */}
-        <div className="lg:col-span-2">
-          <Button
-            variant="primary"
-            size="md"
-            icon={Plus}
-            onClick={onOpenCreateModal}
-            className="w-full py-2.5"
-          >
-            <span>+ Crear Reporte</span>
-          </Button>
         </div>
       </div>
 

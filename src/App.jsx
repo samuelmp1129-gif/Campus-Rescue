@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import Header from './components/layout/Header';
+import StatsOverview from './components/reports/StatsOverview'; // <--- 1. IMPORTACIÓN AGREGADA
 import ReportFilters from './components/reports/ReportFilters';
 import ReportGrid from './components/reports/ReportGrid';
 import {
@@ -115,7 +116,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F2F9F5] text-[#184E77]">
-      {/* Encabezado Principal con botones minimalistas arriba a la derecha */}
+      {/* Encabezado Principal */}
       <Header
         stats={stats}
         activeStatusFilter={filters.status}
@@ -125,7 +126,15 @@ export default function App() {
       />
 
       {/* Contenido Principal */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+        
+        {/* <--- 2. COMPONENTE DE MÉTRICAS INSERTADO AQUÍ ---> */}
+        <StatsOverview
+          stats={stats}
+          activeStatusFilter={filters.status}
+          onQuickStatusFilter={handleQuickStatusFilter}
+        />
+
         {/* Barra de Control (Búsqueda y Filtros) */}
         <ReportFilters
           filters={filters}
@@ -162,7 +171,7 @@ export default function App() {
         onMarkAsReturned={handleMarkAsReturned}
       />
 
-      {/* Notificación Flotante (Confirmación visual) */}
+      {/* Notificación Flotante */}
       <Toast toast={toast} onClose={() => setToast(null)} />
     </div>
   );

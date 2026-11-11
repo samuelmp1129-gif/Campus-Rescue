@@ -1,43 +1,28 @@
 import React from 'react';
-import { ClipboardList, Clock, CheckCircle2, TrendingUp } from 'lucide-react';
+import { ClipboardList, Clock, CheckCircle2, Check } from 'lucide-react';
 
 export default function StatsBar({ stats, activeStatusFilter, onQuickStatusFilter }) {
   const cards = [
     {
       id: 'todos',
       label: 'Total Reportados',
-      value: stats.total,
-      subtitle: `${stats.lostCount} perdidos · ${stats.foundCount} encontrados activos`,
+      value: stats?.total || 0,
+      subtitle: `${stats?.lostCount || 0} perdidos · ${stats?.foundCount || 0} encontrados`,
       icon: ClipboardList,
-      cardBg: 'bg-[#184E77]/85 hover:bg-[#184E77] border-[#34A0A4]/60',
-      iconBg: 'bg-[#168AAD]/35 text-[#D9ED92] border-[#34A0A4]',
-      badgeText: 'Historial Campus',
-      badgeColor: 'bg-[#168AAD] text-white border-[#52B69A]',
-      activeRing: 'ring-[#D9ED92]',
     },
     {
       id: 'activo',
       label: 'Objetos Activos',
-      value: stats.active,
-      subtitle: 'Pendientes por reclamar o entregar',
+      value: stats?.active || 0,
+      subtitle: 'Pendientes por reclamar',
       icon: Clock,
-      cardBg: 'bg-[#1E6091]/85 hover:bg-[#1E6091] border-[#99D98C]/60',
-      iconBg: 'bg-[#D9ED92]/20 text-[#D9ED92] border-[#B5E48C]/60',
-      badgeText: 'En Búsqueda / Custodia',
-      badgeColor: 'bg-[#D9ED92] text-[#184E77] border-[#B5E48C]',
-      activeRing: 'ring-[#D9ED92]',
     },
     {
       id: 'devuelto',
       label: 'Devueltos con Éxito',
-      value: stats.returned,
-      subtitle: `Tasa de recuperación del ${stats.recoveryRate}%`,
+      value: stats?.returned || 0,
+      subtitle: `Tasa recuperación: ${stats?.recoveryRate || 0}%`,
       icon: CheckCircle2,
-      cardBg: 'bg-[#1A759F]/85 hover:bg-[#1A759F] border-[#76C893]/70',
-      iconBg: 'bg-[#52B69A]/30 text-[#D9ED92] border-[#76C893]',
-      badgeText: `${stats.recoveryRate}% Recuperados`,
-      badgeColor: 'bg-[#76C893] text-[#184E77] border-[#B5E48C]',
-      activeRing: 'ring-[#D9ED92]',
     },
   ];
 
@@ -48,62 +33,63 @@ export default function StatsBar({ stats, activeStatusFilter, onQuickStatusFilte
     >
       {cards.map((card) => {
         const Icon = card.icon;
-        const isSelected = activeStatusFilter === card.id && card.id !== 'todos';
+        const isSelected = activeStatusFilter === card.id;
 
         return (
-          <div
+          <button
             key={card.id}
+            type="button"
             onClick={() => onQuickStatusFilter && onQuickStatusFilter(card.id)}
-            role={onQuickStatusFilter ? 'button' : undefined}
-            tabIndex={onQuickStatusFilter ? 0 : undefined}
-            onKeyDown={(e) => {
-              if (onQuickStatusFilter && (e.key === 'Enter' || e.key === ' ')) {
-                e.preventDefault();
-                onQuickStatusFilter(card.id);
-              }
-            }}
-            className={`group relative rounded-2xl border p-5 transition-all duration-200 backdrop-blur-sm shadow-lg ${
-              card.cardBg
-            } ${onQuickStatusFilter ? 'cursor-pointer hover:-translate-y-0.5' : ''} ${
-              isSelected ? `ring-2 ${card.activeRing}` : ''
+            className={`group relative text-left rounded-2xl p-5 transition-all duration-300 border cursor-pointer backdrop-blur-md ${
+              isSelected
+                ? 'bg-white/25 border-[#D9ED92] shadow-xl shadow-black/10 ring-2 ring-[#D9ED92]/60 -translate-y-0.5'
+                : 'bg-white/10 border-white/20 hover:bg-white/15 hover:border-white/40'
             }`}
           >
+            {/* Encabezado de la tarjeta */}
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-[#B5E48C]">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-[#D9ED92]">
                   {card.label}
                 </p>
-                <div className="mt-2 flex items-baseline gap-2.5 flex-wrap">
+                <div className="mt-1.5">
                   <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
                     {card.value}
-                  </span>
-                  <span
-                    className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${card.badgeColor}`}
-                  >
-                    {card.id === 'devuelto' && (
-                      <TrendingUp className="w-3 h-3 shrink-0" />
-                    )}
-                    {card.badgeText}
                   </span>
                 </div>
               </div>
 
               <div
-                className={`p-3 rounded-xl border ${card.iconBg} transition-transform group-hover:scale-105`}
+                className={`p-2.5 rounded-xl transition-all duration-200 ${
+                  isSelected
+                    ? 'bg-[#D9ED92] text-[#184E77]'
+                    : 'bg-white/10 text-[#D9ED92] group-hover:bg-white/20'
+                }`}
               >
-                <Icon className="w-6 h-6" />
+                <Icon className="w-5 h-5" />
               </div>
             </div>
 
-            <p className="mt-3 text-xs text-[#D9ED92]/90 flex items-center justify-between">
-              <span>{card.subtitle}</span>
+            {/* Pie de la tarjeta bien alineado */}
+            <div className="mt-4 pt-2.5 border-t border-white/15 flex items-center justify-between text-xs text-[#D9ED92]/90">
+              <span className="truncate pr-2 font-medium">{card.subtitle}</span>
+
               {onQuickStatusFilter && (
-                <span className="text-[11px] text-[#D9ED92] opacity-0 group-hover:opacity-100 transition-opacity font-bold">
-                  {isSelected ? 'Filtro activo' : 'Filtrar →'}
-                </span>
+                <div className="shrink-0">
+                  {isSelected ? (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#D9ED92] text-[#184E77] shadow-sm">
+                      <Check className="w-3 h-3 stroke-[3]" />
+                      Filtrado
+                    </span>
+                  ) : (
+                    <span className="text-[11px] font-bold text-white/70 opacity-0 group-hover:opacity-100 transition-opacity">
+                      Filtrar →
+                    </span>
+                  )}
+                </div>
               )}
-            </p>
-          </div>
+            </div>
+          </button>
         );
       })}
     </div>

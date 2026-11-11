@@ -16,19 +16,19 @@ export default function Button({
 
   const variants = {
     primary:
-      'bg-gradient-to-r from-[#1A759F] to-[#184E77] hover:from-[#168AAD] hover:to-[#1E6091] text-white shadow-sm shadow-[#184E77]/25 hover:shadow-md hover:shadow-[#184E77]/30 focus:ring-[#34A0A4]',
+      'bg-[#2878B5] hover:bg-[#202B38] text-[#FFFFFF] shadow-sm shadow-[#202B38]/20 hover:shadow-md focus:ring-[#2878B5]',
     secondary:
-      'bg-[#184E77] hover:bg-[#1E6091] text-[#D9ED92] shadow-sm focus:ring-[#168AAD]',
+      'bg-[#202B38] hover:bg-[#34495E] text-[#FFFFFF] shadow-sm focus:ring-[#34495E]',
     success:
-      'bg-gradient-to-r from-[#52B69A] to-[#34A0A4] hover:from-[#76C893] hover:to-[#52B69A] text-white shadow-sm shadow-[#52B69A]/30 hover:shadow-md focus:ring-[#52B69A]',
+      'bg-[#2878B5] hover:bg-[#34495E] text-[#FFFFFF] shadow-sm shadow-[#2878B5]/25 hover:shadow-md focus:ring-[#2878B5]',
     outline:
-      'bg-white hover:bg-[#D9ED92]/30 text-[#184E77] border border-[#99D98C] hover:border-[#52B69A] shadow-sm focus:ring-[#34A0A4]',
+      'bg-[#FFFFFF] hover:bg-[#E8EDF2] text-[#202B38] border border-[#34495E]/30 hover:border-[#2878B5] shadow-sm focus:ring-[#2878B5]',
     subtle:
-      'bg-[#D9ED92]/50 hover:bg-[#B5E48C]/70 text-[#184E77] border border-[#99D98C] focus:ring-[#52B69A]',
+      'bg-[#E8EDF2] hover:bg-[#34495E] text-[#202B38] hover:text-[#FFFFFF] border border-[#34495E]/20 focus:ring-[#2878B5]',
     ghost:
-      'bg-transparent hover:bg-[#D9ED92]/35 text-[#1E6091] hover:text-[#184E77] focus:ring-[#76C893]',
+      'bg-transparent hover:bg-[#E8EDF2] text-[#34495E] hover:text-[#202B38] focus:ring-[#34495E]',
     danger:
-      'bg-[#184E77] hover:bg-[#1E6091] text-[#D9ED92] shadow-sm focus:ring-[#1A759F]',
+      'bg-[#202B38] hover:bg-[#34495E] text-[#FFFFFF] shadow-sm focus:ring-[#2878B5]',
   };
 
   const sizes = {

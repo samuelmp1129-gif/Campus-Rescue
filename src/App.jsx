@@ -114,8 +114,8 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F2F9F5] text-[#184E77]">
-      {/* Encabezado Principal (contiene el StatsBar azul) */}
+    <div className="min-h-screen flex flex-col bg-[#E8EDF2] text-[#202B38]">
+      {/* Encabezado Principal con botones minimalistas arriba a la derecha */}
       <Header
         stats={stats}
         activeStatusFilter={filters.status}
@@ -125,7 +125,7 @@ export default function App() {
       />
 
       {/* Contenido Principal */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Barra de Control (Búsqueda y Filtros) */}
         <ReportFilters
           filters={filters}
@@ -162,7 +162,7 @@ export default function App() {
         onMarkAsReturned={handleMarkAsReturned}
       />
 
-      {/* Notificación Flotante */}
+      {/* Notificación Flotante (Confirmación visual) */}
       <Toast toast={toast} onClose={() => setToast(null)} />
     </div>
   );

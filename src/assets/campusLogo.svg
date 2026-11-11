@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <defs>
     <linearGradient id="campusShield" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#34A0A4"/>
-      <stop offset="50%" stop-color="#1A759F"/>
-      <stop offset="100%" stop-color="#184E77"/>
+      <stop offset="0%" stop-color="#2878B5"/>
+      <stop offset="55%" stop-color="#34495E"/>
+      <stop offset="100%" stop-color="#202B38"/>
     </linearGradient>
   </defs>
   <rect width="64" height="64" rx="16" fill="url(#campusShield)"/>
-  <path d="M32 11L49 18.5V31C49 42.6 41.8 52.4 32 55.8C22.2 52.4 15 42.6 15 31V18.5L32 11Z" fill="#99D98C" fill-opacity="0.22" stroke="#D9ED92" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M32 11L49 18.5V31C49 42.6 41.8 52.4 32 55.8C22.2 52.4 15 42.6 15 31V18.5L32 11Z" fill="#E8EDF2" fill-opacity="0.18" stroke="#E8EDF2" stroke-width="2.5" stroke-linejoin="round"/>
   <circle cx="30" cy="30" r="8.5" stroke="#FFFFFF" stroke-width="3"/>
-  <path d="M36.5 36.5L43 43" stroke="#D9ED92" stroke-width="3.5" stroke-linecap="round"/>
-  <circle cx="30" cy="30" r="3" fill="#B5E48C"/>
+  <path d="M36.5 36.5L43 43" stroke="#E8EDF2" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="30" cy="30" r="3" fill="#2878B5"/>
 </svg>

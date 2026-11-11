@@ -7,17 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        palette: {
-          lime: '#D9ED92',
-          lightgreen: '#B5E48C',
-          mint: '#99D98C',
-          emerald: '#76C893',
-          keppel: '#52B69A',
-          verdigris: '#34A0A4',
-          bondi: '#168AAD',
-          cerulean: '#1A759F',
-          lapis: '#1E6091',
-          navy: '#184E77',
+        campus: {
+          dark: '#202B38',
+          slate: '#34495E',
+          blue: '#2878B5',
+          light: '#E8EDF2',
+          white: '#FFFFFF',
         },
       },
       fontFamily: {

@@ -12,14 +12,14 @@ export default function ReportGrid({
 }) {
   if (reports.length === 0) {
     return (
-      <div className="bg-white rounded-2xl border-2 border-dashed border-[#76C893] p-10 sm:p-14 text-center max-w-2xl mx-auto my-4 shadow-sm animate-fade-in">
-        <div className="w-16 h-16 rounded-2xl bg-[#D9ED92]/60 border border-[#99D98C] text-[#184E77] flex items-center justify-center mx-auto mb-4">
-          <SearchX className="w-8 h-8 text-[#168AAD]" />
+      <div className="bg-[#FFFFFF] rounded-2xl border-2 border-dashed border-[#34495E]/30 p-10 sm:p-14 text-center max-w-2xl mx-auto my-4 shadow-sm animate-fade-in">
+        <div className="w-16 h-16 rounded-2xl bg-[#E8EDF2] border border-[#34495E]/15 text-[#202B38] flex items-center justify-center mx-auto mb-4">
+          <SearchX className="w-8 h-8 text-[#2878B5]" />
         </div>
-        <h3 className="text-lg sm:text-xl font-extrabold text-[#184E77]">
+        <h3 className="text-lg sm:text-xl font-extrabold text-[#202B38]">
           No se encontraron objetos con los filtros seleccionados
         </h3>
-        <p className="mt-2 text-sm text-[#1E6091] max-w-md mx-auto leading-relaxed">
+        <p className="mt-2 text-sm text-[#34495E] max-w-md mx-auto leading-relaxed">
           Intenta ajustar los términos de búsqueda, cambiar la categoría o ubicación,
           o registra un nuevo reporte si extraviaste o encontraste una pertenencia.
         </p>

@@ -3,16 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --c-lime: #D9ED92;
-  --c-light-green: #B5E48C;
-  --c-mint: #99D98C;
-  --c-emerald: #76C893;
-  --c-keppel: #52B69A;
-  --c-verdigris: #34A0A4;
-  --c-bondi: #168AAD;
-  --c-cerulean: #1A759F;
-  --c-lapis: #1E6091;
-  --c-navy: #184E77;
+  --c-dark: #202B38;
+  --c-slate: #34495E;
+  --c-blue: #2878B5;
+  --c-light: #E8EDF2;
+  --c-white: #FFFFFF;
 }
 
 @layer base {
@@ -21,8 +16,8 @@
   }
 
   body {
-    background-color: #F2F9F5;
-    color: #184E77;
+    background-color: #E8EDF2;
+    color: #202B38;
     @apply font-sans antialiased;
   }
 }

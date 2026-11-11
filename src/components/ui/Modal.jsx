@@ -39,26 +39,26 @@ export default function Modal({
     >
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-[#184E77]/70 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-[#202B38]/75 backdrop-blur-sm transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Modal Content */}
       <div
-        className={`relative w-full ${maxWidth} rounded-2xl bg-white shadow-2xl border-2 border-[#76C893] overflow-hidden z-10 my-auto max-h-[92vh] flex flex-col animate-slide-up`}
+        className={`relative w-full ${maxWidth} rounded-2xl bg-[#FFFFFF] shadow-2xl border border-[#34495E]/30 overflow-hidden z-10 my-auto max-h-[92vh] flex flex-col animate-slide-up`}
       >
         {title && (
-          <div className="flex items-start justify-between gap-4 px-6 py-4 bg-gradient-to-r from-[#184E77] via-[#1E6091] to-[#1A759F] border-b border-[#34A0A4]/40 shrink-0 text-white">
+          <div className="flex items-start justify-between gap-4 px-6 py-4 bg-gradient-to-r from-[#202B38] to-[#34495E] border-b border-[#2878B5]/40 shrink-0 text-[#FFFFFF]">
             <div>
               <h2
                 id="modal-title"
-                className="text-lg sm:text-xl font-extrabold text-[#D9ED92]"
+                className="text-lg sm:text-xl font-extrabold text-[#FFFFFF]"
               >
                 {title}
               </h2>
               {subtitle && (
-                <p className="text-xs sm:text-sm text-[#B5E48C] mt-0.5">
+                <p className="text-xs sm:text-sm text-[#E8EDF2] mt-0.5">
                   {subtitle}
                 </p>
               )}
@@ -67,7 +67,7 @@ export default function Modal({
               type="button"
               onClick={onClose}
               aria-label="Cerrar ventana"
-              className="rounded-xl p-2 text-[#D9ED92] hover:text-white hover:bg-[#168AAD]/50 transition-colors"
+              className="rounded-xl p-2 text-[#E8EDF2] hover:text-[#FFFFFF] hover:bg-[#2878B5]/50 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>

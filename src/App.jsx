@@ -7,21 +7,45 @@ import {
   ReportDetailModal,
 } from './components/reports/ReportModal';
 import Toast from './components/ui/Toast';
-import useLocalStorage from './hooks/useLocalStorage';
 import initialReports from './data/initialData';
-import { STORAGE_KEY, INITIAL_FILTERS } from './utils/constants';
+import { INITIAL_FILTERS } from './utils/constants';
 import {
   filterReports,
   getUniqueLocations,
   calculateStats,
 } from './utils/filters';
+import { formatDate } from './utils/formatters';
+import {
+  getReports,
+  createReport,
+  updateReportStatus,
+  updateReportImage,
+  resetDemoReports,
+} from './services/reportService';
 
 export default function App() {
-  const [reports, setReports] = useLocalStorage(STORAGE_KEY, initialReports);
+  const [reports, setReports] = useState(initialReports);
   const [filters, setFilters] = useState(INITIAL_FILTERS);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [selectedReportId, setSelectedReportId] = useState(null);
   const [toast, setToast] = useState(null);
+
+  // Carga inicial asíncrona a través de la capa de servicio desacoplada
+  useEffect(() => {
+    let isMounted = true;
+    getReports()
+      .then((data) => {
+        if (isMounted && Array.isArray(data)) {
+          setReports(data);
+        }
+      })
+      .catch((error) => {
+        console.error('Error cargando reportes:', error);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Auto-ocultar notificación Toast después de 4.5 segundos
   useEffect(() => {
@@ -68,42 +92,58 @@ export default function App() {
     }));
   };
 
-  const handleCreateReport = (newReport) => {
-    setReports((prevReports) => [newReport, ...prevReports]);
+  const handleCreateReport = async (newReportPayload) => {
+    const savedReport = await createReport(newReportPayload);
+    setReports((prevReports) => [savedReport, ...prevReports]);
     setToast({
       type: 'success',
       title: '¡Reporte publicado con éxito!',
-      message: `"${newReport.title}" se registró en ${newReport.location}.`,
+      message: `"${savedReport.title}" se registró en ${savedReport.location}.`,
     });
   };
 
-  const handleMarkAsReturned = (reportId) => {
+  const handleMarkAsReturned = async (reportId) => {
     const targetReport = reports.find((r) => r.id === reportId);
     if (!targetReport || targetReport.status === 'devuelto') return;
 
+    const updated = await updateReportStatus(reportId, 'devuelto');
+
     setReports((prevReports) =>
-      prevReports.map((item) =>
-        item.id === reportId ? { ...item, status: 'devuelto' } : item
-      )
+      prevReports.map((item) => (item.id === reportId ? updated : item))
     );
 
     setToast({
       type: 'success',
       title: '¡Confirmado! Objeto marcado como Devuelto',
-      message: `"${targetReport.title}" ha sido actualizado al estado Devuelto.`,
+      message: `"${updated.title}" fue reclamado el ${formatDate(updated.claimedDate)}.`,
       actionLabel: 'Deshacer cambio',
-      onAction: () => {
+      onAction: async () => {
+        const reverted = await updateReportStatus(reportId, 'activo');
         setReports((prevReports) =>
-          prevReports.map((item) =>
-            item.id === reportId ? { ...item, status: 'activo' } : item
-          )
+          prevReports.map((item) => (item.id === reportId ? reverted : item))
         );
       },
     });
   };
 
-  const handleResetDemoData = () => {
-    setReports(initialReports);
+  const handleUpdateReportImage = async (reportId, newImageUrl) => {
+    const updated = await updateReportImage(reportId, newImageUrl);
+    if (!updated) return;
+
+    setReports((prevReports) =>
+      prevReports.map((item) => (item.id === reportId ? updated : item))
+    );
+
+    setToast({
+      type: 'success',
+      title: 'Fotografía actualizada',
+      message: `Se cargó la nueva imagen desde tu dispositivo para "${updated.title}".`,
+    });
+  };
+
+  const handleResetDemoData = async () => {
+    const resetData = await resetDemoReports();
+    setReports(resetData);
     setFilters(INITIAL_FILTERS);
     setSelectedReportId(null);
     setToast({
@@ -160,6 +200,7 @@ export default function App() {
         isOpen={Boolean(selectedReport)}
         onClose={() => setSelectedReportId(null)}
         onMarkAsReturned={handleMarkAsReturned}
+        onUpdateReportImage={handleUpdateReportImage}
       />
 
       {/* Notificación Flotante (Confirmación visual) */}

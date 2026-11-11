@@ -5,13 +5,16 @@ export const initialReports = [
     title: 'Mochila negra con termo',
     category: 'Ropa y Accesorios',
     description:
-      'Se encontró una mochila negra marca Targus en las mesas de estudio grupal del segundo piso de la Biblioteca. En el bolsillo lateral izquierdo tiene un termo metálico gris mate de 750 ml y un llavero con cinta azul institucional. Se dejó bajo resguardo en el módulo de recepción.',
+      'Se encontró una mochila negra marca Targus en las mesas de estudio grupal del segundo piso de la Biblioteca. En el bolsillo lateral izquierdo tiene un termo metálico gris mate de 750 ml y un llavero con cinta institucional.',
     location: 'Biblioteca',
     date: '2026-11-10',
-    contactAlias: '@laura_bibliotecaria · WhatsApp: 3004567890',
+    contactName: 'Laura Gómez',
+    contactPhone: '300 456 7890',
+    contactAlias: 'Laura Gómez · 300 456 7890',
     status: 'activo',
+    claimedDate: null,
     imageUrl:
-      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1581605405669-fcdf81165afa?auto=format&fit=crop&w=900&q=80',
   },
   {
     id: 'cr-1002',
@@ -19,27 +22,33 @@ export const initialReports = [
     title: 'Audífonos Inalámbricos Sony WH-1000XM4',
     category: 'Electrónica',
     description:
-      'Olvidé mis audífonos de diadema color negro mate dentro de su estuche rígido gris al finalizar la práctica de programación. El estuche tiene un sticker pequeño de React en la parte trasera y el cable USB-C adentro.',
+      'Olvidé mis audífonos de diadema color negro mate dentro de su estuche rígido gris sobre el escritorio al finalizar la práctica de programación. Tienen el cable USB-C guardado en el compartimento interno.',
     location: 'Bloque 4 - Laboratorio 2',
     date: '2026-11-09',
-    contactAlias: '@carlos_dev · WhatsApp: 3158901234',
+    contactName: 'Carlos Restrepo',
+    contactPhone: '315 890 1234',
+    contactAlias: 'Carlos Restrepo · 315 890 1234',
     status: 'activo',
+    claimedDate: null,
     imageUrl:
-      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80',
   },
   {
     id: 'cr-1003',
     type: 'encontrado',
-    title: 'Carné Estudiantil y Portadocumentos Azul',
+    title: 'Carné Estudiantil y Portadocumentos de Cuero',
     category: 'Documentos',
     description:
-      'Encontré un portadocumentos de cuero azul oscuro con carné estudiantil de la Facultad de Ingeniería y tarjeta de transporte integrado cerca de la fila de pagos de la cafetería. Quien sea el titular puede escribirme indicando su número de documento para entregarlo.',
+      'Encontré un portadocumentos de cuero oscuro con carné estudiantil de la Facultad de Ingeniería y tarjeta de transporte integrado sobre una de las mesas cerca de la fila de pagos de la cafetería.',
     location: 'Cafetería Central',
     date: '2026-11-11',
-    contactAlias: '@sofia_med · Telegram: @sofiamed_campus',
+    contactName: 'Sofía Medina',
+    contactPhone: '310 234 5678',
+    contactAlias: 'Sofía Medina · 310 234 5678',
     status: 'activo',
+    claimedDate: null,
     imageUrl:
-      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80',
   },
   {
     id: 'cr-1004',
@@ -47,13 +56,16 @@ export const initialReports = [
     title: 'Cuaderno de Cálculo Multivariable y Apuntes',
     category: 'Libros y Cuadernos',
     description:
-      'Cuaderno argollado de pasta dura color índigo con todos los apuntes del semestre de Cálculo Multivariable y un separador magnético naranja. Quedó en la tercera fila de butacas tras la conferencia de ciencias.',
+      'Cuaderno argollado de pasta dura con todos los apuntes manuscritos del semestre de Cálculo Multivariable y un bolígrafo negro. Quedó en la tercera fila de butacas tras la conferencia.',
     location: 'Auditorio Principal',
     date: '2026-11-07',
-    contactAlias: '@mateo_ing · WhatsApp: 3209876543',
+    contactName: 'Mateo Vargas',
+    contactPhone: '320 987 6543',
+    contactAlias: 'Mateo Vargas · 320 987 6543',
     status: 'devuelto',
+    claimedDate: '2026-11-10',
     imageUrl:
-      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=80',
   },
 ];
 

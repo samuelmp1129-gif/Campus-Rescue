@@ -13,11 +13,19 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
     background-color: #E8EDF2;
     color: #202B38;
-    @apply font-sans antialiased;
+    @apply font-sans antialiased tracking-[-0.01em];
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-[-0.025em];
   }
 }

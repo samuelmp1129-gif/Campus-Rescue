@@ -1,4 +1,4 @@
-import { normalizeText } from './formatters';
+import { normalizeText } from './formatters.js';
 
 /**
  * Filtra la lista de reportes según búsqueda libre, categoría, ubicación, tipo y estado.

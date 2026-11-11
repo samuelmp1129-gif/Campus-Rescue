@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClipboardList, Clock, CheckCircle2, TrendingUp } from 'lucide-react';
+import { ClipboardList, Clock, CheckCircle2, Check } from 'lucide-react';
 
 export default function StatsBar({ stats, activeStatusFilter, onQuickStatusFilter }) {
   const cards = [
@@ -7,37 +7,22 @@ export default function StatsBar({ stats, activeStatusFilter, onQuickStatusFilte
       id: 'todos',
       label: 'Total Reportados',
       value: stats.total,
-      subtitle: `${stats.lostCount} perdidos · ${stats.foundCount} encontrados activos`,
+      subtitle: `${stats.lostCount} perdidos · ${stats.foundCount} encontrados`,
       icon: ClipboardList,
-      cardBg: 'bg-[#202B38]/85 hover:bg-[#202B38] border-[#34495E]',
-      iconBg: 'bg-[#34495E] text-[#E8EDF2] border-[#2878B5]/40',
-      badgeText: 'Historial Campus',
-      badgeColor: 'bg-[#34495E] text-[#E8EDF2] border-[#E8EDF2]/25',
-      activeRing: 'ring-[#E8EDF2]',
     },
     {
       id: 'activo',
       label: 'Objetos Activos',
       value: stats.active,
-      subtitle: 'Pendientes por reclamar o entregar',
+      subtitle: 'Pendientes por reclamar · En custodia',
       icon: Clock,
-      cardBg: 'bg-[#34495E]/80 hover:bg-[#34495E] border-[#E8EDF2]/25',
-      iconBg: 'bg-[#202B38] text-[#E8EDF2] border-[#E8EDF2]/20',
-      badgeText: 'En Búsqueda / Custodia',
-      badgeColor: 'bg-[#E8EDF2] text-[#202B38] border-[#FFFFFF]',
-      activeRing: 'ring-[#E8EDF2]',
     },
     {
       id: 'devuelto',
       label: 'Devueltos con Éxito',
       value: stats.returned,
-      subtitle: `Tasa de recuperación del ${stats.recoveryRate}%`,
+      subtitle: `${stats.recoveryRate}% recuperados · Casos resueltos`,
       icon: CheckCircle2,
-      cardBg: 'bg-[#2878B5]/30 hover:bg-[#2878B5]/45 border-[#2878B5]',
-      iconBg: 'bg-[#2878B5] text-[#FFFFFF] border-[#E8EDF2]/30',
-      badgeText: `${stats.recoveryRate}% Recuperados`,
-      badgeColor: 'bg-[#2878B5] text-[#FFFFFF] border-[#E8EDF2]/40',
-      activeRing: 'ring-[#FFFFFF]',
     },
   ];
 
@@ -48,7 +33,7 @@ export default function StatsBar({ stats, activeStatusFilter, onQuickStatusFilte
     >
       {cards.map((card) => {
         const Icon = card.icon;
-        const isSelected = activeStatusFilter === card.id && card.id !== 'todos';
+        const isSelected = activeStatusFilter === card.id;
 
         return (
           <div
@@ -62,47 +47,59 @@ export default function StatsBar({ stats, activeStatusFilter, onQuickStatusFilte
                 onQuickStatusFilter(card.id);
               }
             }}
-            className={`group relative rounded-2xl border p-5 transition-all duration-200 backdrop-blur-sm shadow-lg ${
-              card.cardBg
-            } ${onQuickStatusFilter ? 'cursor-pointer hover:-translate-y-0.5' : ''} ${
-              isSelected ? `ring-2 ${card.activeRing}` : ''
+            className={`group relative rounded-2xl p-5 backdrop-blur-md transition-all duration-300 ease-out select-none ${
+              onQuickStatusFilter
+                ? 'cursor-pointer hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#2878B5]'
+                : ''
+            } ${
+              isSelected
+                ? 'bg-white/20 border border-[#2878B5] shadow-xl shadow-[#202B38]/30 -translate-y-0.5'
+                : 'bg-white/10 hover:bg-white/15 border border-white/15 shadow-md shadow-[#202B38]/15'
             }`}
           >
+            {/* Cabecera de la tarjeta: Título Title Case + Número de alto impacto + Contenedor de Icono */}
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-[#E8EDF2]">
+                <p className="text-xs font-semibold text-[#E8EDF2] tracking-normal">
                   {card.label}
                 </p>
-                <div className="mt-2 flex items-baseline gap-2.5 flex-wrap">
-                  <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#FFFFFF]">
-                    {card.value}
-                  </span>
-                  <span
-                    className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${card.badgeColor}`}
-                  >
-                    {card.id === 'devuelto' && (
-                      <TrendingUp className="w-3 h-3 shrink-0" />
-                    )}
-                    {card.badgeText}
-                  </span>
-                </div>
+                <p className="mt-2 text-4xl sm:text-5xl font-black text-[#FFFFFF] tracking-tight tabular-nums leading-none">
+                  {card.value}
+                </p>
               </div>
 
               <div
-                className={`p-3 rounded-xl border ${card.iconBg} transition-transform group-hover:scale-105`}
+                className={`rounded-xl p-2.5 transition-all duration-300 ${
+                  isSelected
+                    ? 'bg-[#2878B5] text-[#FFFFFF] shadow-md shadow-[#2878B5]/35 scale-105'
+                    : 'bg-white/10 text-[#E8EDF2] group-hover:bg-white/15 group-hover:text-[#FFFFFF]'
+                }`}
               >
-                <Icon className="w-6 h-6" />
+                <Icon className="w-5 h-5 stroke-[2]" />
               </div>
             </div>
 
-            <p className="mt-3 text-xs text-[#E8EDF2]/85 flex items-center justify-between">
-              <span>{card.subtitle}</span>
+            {/* Pie de tarjeta: Subtítulo limpio de una línea + Indicador interactivo */}
+            <div className="mt-4 flex items-center justify-between gap-2">
+              <p className="text-xs text-[#E8EDF2]/80 truncate">
+                {card.subtitle}
+              </p>
+
               {onQuickStatusFilter && (
-                <span className="text-[11px] text-[#FFFFFF] opacity-0 group-hover:opacity-100 transition-opacity font-bold">
-                  {isSelected ? 'Filtro activo' : 'Filtrar →'}
-                </span>
+                <div className="shrink-0">
+                  {isSelected ? (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#2878B5] text-[#FFFFFF] shadow-sm">
+                      <Check className="w-3 h-3 stroke-[2.5]" />
+                      <span>Filtrado</span>
+                    </span>
+                  ) : (
+                    <span className="text-[11px] font-medium text-[#E8EDF2]/85 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      Filtrar →
+                    </span>
+                  )}
+                </div>
               )}
-            </p>
+            </div>
           </div>
         );
       })}

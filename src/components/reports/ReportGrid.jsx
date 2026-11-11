@@ -12,14 +12,14 @@ export default function ReportGrid({
 }) {
   if (reports.length === 0) {
     return (
-      <div className="bg-[#FFFFFF] rounded-2xl border-2 border-dashed border-[#34495E]/30 p-10 sm:p-14 text-center max-w-2xl mx-auto my-4 shadow-sm animate-fade-in">
-        <div className="w-16 h-16 rounded-2xl bg-[#E8EDF2] border border-[#34495E]/15 text-[#202B38] flex items-center justify-center mx-auto mb-4">
-          <SearchX className="w-8 h-8 text-[#2878B5]" />
+      <div className="bg-[#FFFFFF] rounded-2xl border border-dashed border-[#34495E]/25 p-10 sm:p-14 text-center max-w-2xl mx-auto my-4 shadow-sm animate-fade-in">
+        <div className="w-14 h-14 rounded-2xl bg-[#E8EDF2] border border-[#34495E]/10 text-[#202B38] flex items-center justify-center mx-auto mb-4">
+          <SearchX className="w-7 h-7 text-[#2878B5] stroke-[1.75]" />
         </div>
-        <h3 className="text-lg sm:text-xl font-extrabold text-[#202B38]">
+        <h3 className="text-lg font-semibold tracking-tight text-[#202B38]">
           No se encontraron objetos con los filtros seleccionados
         </h3>
-        <p className="mt-2 text-sm text-[#34495E] max-w-md mx-auto leading-relaxed">
+        <p className="mt-2 text-sm font-normal text-[#34495E]/80 max-w-md mx-auto leading-relaxed">
           Intenta ajustar los términos de búsqueda, cambiar la categoría o ubicación,
           o registra un nuevo reporte si extraviaste o encontraste una pertenencia.
         </p>
@@ -41,7 +41,7 @@ export default function ReportGrid({
               icon={Plus}
               onClick={onOpenCreateModal}
             >
-              + Crear Reporte
+              Crear reporte
             </Button>
           )}
         </div>

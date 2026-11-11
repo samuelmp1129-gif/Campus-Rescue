@@ -34,14 +34,14 @@ export default function ReportFilters({
 
   const statusOptions = [
     { value: 'todos', label: 'Todos', icon: null },
-    { value: 'activo', label: 'Solo Activos', icon: Clock },
-    { value: 'devuelto', label: 'Solo Devueltos', icon: CheckCircle2 },
+    { value: 'activo', label: 'Solo activos', icon: Clock },
+    { value: 'devuelto', label: 'Solo devueltos', icon: CheckCircle2 },
   ];
 
   return (
     <section
       aria-label="Barra de búsqueda y filtros"
-      className="bg-[#FFFFFF] rounded-2xl shadow-md shadow-[#202B38]/5 border border-[#34495E]/15 p-4 sm:p-6 mb-8"
+      className="bg-[#FFFFFF] rounded-2xl shadow-sm border border-[#34495E]/10 p-4 sm:p-6 mb-8"
     >
       {/* Fila superior: Búsqueda + Dropdowns de Categoría y Ubicación */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 items-end">
@@ -49,26 +49,26 @@ export default function ReportFilters({
         <div className="md:col-span-2 lg:col-span-6">
           <label
             htmlFor="filter-search"
-            className="block text-xs font-bold uppercase tracking-wider text-[#202B38] mb-1.5"
+            className="block text-[13px] font-medium text-[#34495E] mb-1.5"
           >
             Buscar objeto
           </label>
           <div className="relative">
-            <Search className="w-4 h-4 text-[#2878B5] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-4 h-4 text-[#2878B5]/85 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               id="filter-search"
               type="text"
               value={filters.search}
               onChange={(e) => onFilterChange('search', e.target.value)}
               placeholder="Buscar por nombre, ubicación o descripción (ej: mochila, biblioteca)..."
-              className="w-full rounded-xl border border-[#34495E]/25 bg-[#E8EDF2]/55 focus:bg-[#FFFFFF] pl-10 pr-9 py-2.5 text-sm text-[#202B38] placeholder:text-[#34495E]/60 transition-all focus:outline-none focus:border-[#2878B5] focus:ring-2 focus:ring-[#2878B5]/20"
+              className="w-full rounded-xl border border-[#34495E]/20 bg-[#E8EDF2]/45 focus:bg-[#FFFFFF] pl-10 pr-9 py-2.5 text-sm font-normal text-[#202B38] placeholder:text-[#34495E]/50 transition-all focus:outline-none focus:border-[#2878B5] focus:ring-2 focus:ring-[#2878B5]/15"
             />
             {filters.search && (
               <button
                 type="button"
                 onClick={() => onFilterChange('search', '')}
                 aria-label="Limpiar búsqueda"
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 rounded-lg text-[#34495E] hover:text-[#202B38] hover:bg-[#E8EDF2]"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 rounded-lg text-[#34495E]/70 hover:text-[#202B38] hover:bg-[#E8EDF2]"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -80,17 +80,17 @@ export default function ReportFilters({
         <div className="lg:col-span-3">
           <label
             htmlFor="filter-category"
-            className="block text-xs font-bold uppercase tracking-wider text-[#202B38] mb-1.5"
+            className="block text-[13px] font-medium text-[#34495E] mb-1.5"
           >
             Categoría
           </label>
           <div className="relative">
-            <Tag className="w-4 h-4 text-[#2878B5] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Tag className="w-4 h-4 text-[#2878B5]/85 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <select
               id="filter-category"
               value={filters.category}
               onChange={(e) => onFilterChange('category', e.target.value)}
-              className="w-full rounded-xl border border-[#34495E]/25 bg-[#E8EDF2]/55 focus:bg-[#FFFFFF] pl-9 pr-3 py-2.5 text-sm text-[#202B38] font-medium transition-all focus:outline-none focus:border-[#2878B5] focus:ring-2 focus:ring-[#2878B5]/20"
+              className="w-full rounded-xl border border-[#34495E]/20 bg-[#E8EDF2]/45 focus:bg-[#FFFFFF] pl-9 pr-3 py-2.5 text-sm font-normal text-[#202B38] transition-all focus:outline-none focus:border-[#2878B5] focus:ring-2 focus:ring-[#2878B5]/15"
             >
               <option value="Todas">Todas las categorías</option>
               {CATEGORIES.map((cat) => (
@@ -106,17 +106,17 @@ export default function ReportFilters({
         <div className="lg:col-span-3">
           <label
             htmlFor="filter-location"
-            className="block text-xs font-bold uppercase tracking-wider text-[#202B38] mb-1.5"
+            className="block text-[13px] font-medium text-[#34495E] mb-1.5"
           >
-            Ubicación en el Campus
+            Ubicación en el campus
           </label>
           <div className="relative">
-            <MapPin className="w-4 h-4 text-[#2878B5] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <MapPin className="w-4 h-4 text-[#2878B5]/85 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <select
               id="filter-location"
               value={filters.location}
               onChange={(e) => onFilterChange('location', e.target.value)}
-              className="w-full rounded-xl border border-[#34495E]/25 bg-[#E8EDF2]/55 focus:bg-[#FFFFFF] pl-9 pr-3 py-2.5 text-sm text-[#202B38] font-medium transition-all focus:outline-none focus:border-[#2878B5] focus:ring-2 focus:ring-[#2878B5]/20"
+              className="w-full rounded-xl border border-[#34495E]/20 bg-[#E8EDF2]/45 focus:bg-[#FFFFFF] pl-9 pr-3 py-2.5 text-sm font-normal text-[#202B38] transition-all focus:outline-none focus:border-[#2878B5] focus:ring-2 focus:ring-[#2878B5]/15"
             >
               <option value="Todas">Todas las ubicaciones</option>
               {locations.map((loc) => (
@@ -134,12 +134,12 @@ export default function ReportFilters({
         <div className="flex flex-wrap items-center gap-4 sm:gap-6">
           {/* Filtro por Tipo: Todos | Perdidos | Encontrados */}
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#34495E] flex items-center gap-1">
+            <span className="text-xs font-medium text-[#34495E]/80 flex items-center gap-1.5">
               <Filter className="w-3.5 h-3.5 text-[#2878B5]" />
-              Tipo:
+              Tipo
             </span>
             <div
-              className="inline-flex rounded-xl bg-[#E8EDF2] p-1 border border-[#34495E]/15"
+              className="inline-flex rounded-xl bg-[#E8EDF2]/80 p-1 border border-[#34495E]/10"
               role="group"
               aria-label="Filtrar por tipo de reporte"
             >
@@ -150,7 +150,7 @@ export default function ReportFilters({
                     key={option.value}
                     type="button"
                     onClick={() => onFilterChange('type', option.value)}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                       active
                         ? 'bg-[#202B38] text-[#FFFFFF] shadow-sm'
                         : 'text-[#34495E] hover:text-[#202B38] hover:bg-[#FFFFFF]/70'
@@ -158,7 +158,7 @@ export default function ReportFilters({
                   >
                     {option.dot && (
                       <span
-                        className={`w-2 h-2 rounded-full ${
+                        className={`w-1.5 h-1.5 rounded-full ${
                           active ? 'bg-[#2878B5]' : option.dot
                         }`}
                       />
@@ -172,11 +172,11 @@ export default function ReportFilters({
 
           {/* Filtro por Estado: Todos | Solo Activos | Solo Devueltos */}
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#34495E]">
-              Estado:
+            <span className="text-xs font-medium text-[#34495E]/80">
+              Estado
             </span>
             <div
-              className="inline-flex rounded-xl bg-[#E8EDF2] p-1 border border-[#34495E]/15"
+              className="inline-flex rounded-xl bg-[#E8EDF2]/80 p-1 border border-[#34495E]/10"
               role="group"
               aria-label="Filtrar por estado del reporte"
             >
@@ -188,7 +188,7 @@ export default function ReportFilters({
                     key={option.value}
                     type="button"
                     onClick={() => onFilterChange('status', option.value)}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                       active
                         ? option.value === 'devuelto'
                           ? 'bg-[#2878B5] text-[#FFFFFF] shadow-sm'
@@ -206,17 +206,17 @@ export default function ReportFilters({
         </div>
 
         {/* Resumen de resultados y limpiar filtros */}
-        <div className="flex items-center justify-between lg:justify-end gap-3 text-xs text-[#34495E]">
+        <div className="flex items-center justify-between lg:justify-end gap-3 text-xs font-normal text-[#34495E]/80">
           <span>
-            Mostrando <strong className="text-[#202B38]">{filteredCount}</strong> de{' '}
-            <strong className="text-[#202B38]">{totalCount}</strong> reportes
+            Mostrando <span className="font-semibold text-[#202B38] tabular-nums">{filteredCount}</span> de{' '}
+            <span className="font-semibold text-[#202B38] tabular-nums">{totalCount}</span> reportes
           </span>
 
           {hasActiveFilters && (
             <button
               type="button"
               onClick={onResetFilters}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg font-bold text-[#202B38] bg-[#E8EDF2] hover:bg-[#2878B5] hover:text-[#FFFFFF] border border-[#34495E]/20 transition-colors"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg font-medium text-[#202B38] bg-[#E8EDF2] hover:bg-[#2878B5] hover:text-[#FFFFFF] border border-[#34495E]/15 transition-colors"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               Limpiar filtros

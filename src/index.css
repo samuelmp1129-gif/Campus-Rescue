@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --c-lime: #D9ED92;
+  --c-light-green: #B5E48C;
+  --c-mint: #99D98C;
+  --c-emerald: #76C893;
+  --c-keppel: #52B69A;
+  --c-verdigris: #34A0A4;
+  --c-bondi: #168AAD;
+  --c-cerulean: #1A759F;
+  --c-lapis: #1E6091;
+  --c-navy: #184E77;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #F2F9F5;
+    color: #184E77;
+    @apply font-sans antialiased;
+  }
+}
